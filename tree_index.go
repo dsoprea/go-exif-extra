@@ -3,6 +3,8 @@ package exifextra
 import (
 	"fmt"
 	"path"
+	"sort"
+	"strings"
 
 	"io/fs"
 	"io/ioutil"
@@ -224,4 +226,69 @@ func (ti *TreeIndex) AddPath(rootPath string) (err error) {
 	}
 
 	return nil
+}
+
+// SearchResult represents a single hit.
+type SearchResult struct {
+	Filepath    string
+	IfdPath     string
+	TagName     string
+	ValuePhrase string
+}
+
+// String returns a stringified representation of the result.
+func (sr SearchResult) String() string {
+	return fmt.Sprintf("SearchResult<FILE-PATH=[%s] IFD=[%s] TAG=[%s] VALUE=[%s]>", sr.Filepath, sr.IfdPath, sr.TagName, sr.ValuePhrase)
+}
+
+// Search does a case-insensitive search through the values of the given tags
+// acros all indexed files. If no tags are given, all tags will be searched. The
+// tag-names are also case-insensitive.
+func (ti *TreeIndex) Search(query string, tagNames []string) (hits []SearchResult) {
+	var filter sort.StringSlice
+
+	if tagNames != nil && len(tagNames) > 0 {
+		filter = make(sort.StringSlice, 0)
+
+		for _, name := range tagNames {
+			name = strings.ToLower(name)
+			filter = append(filter, name)
+		}
+
+		filter.Sort()
+	}
+
+	query = strings.ToLower(query)
+
+	hits = make([]SearchResult, 0)
+	for it, values := range ti.indexed {
+		// Filter tag names.
+
+		if filter != nil {
+			tagNameLower := strings.ToLower(it.TagName)
+			i := filter.Search(tagNameLower)
+			if i >= len(filter) || filter[i] != tagNameLower {
+				continue
+			}
+		}
+
+		// Filter tag values.
+
+		for _, iv := range values {
+			value := strings.ToLower(iv.ValuePhrase)
+
+			if strings.Contains(value, query) == true {
+				result := SearchResult{
+					Filepath:    iv.Filepath,
+					IfdPath:     it.IfdPath,
+					TagName:     it.TagName,
+					ValuePhrase: iv.ValuePhrase,
+				}
+
+				hits = append(hits, result)
+			}
+		}
+	}
+
+	return hits
 }

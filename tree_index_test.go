@@ -77,7 +77,7 @@ func TestTreeIndex_AddPath(t *testing.T) {
 	}
 }
 
-func TestGetFirstIfdMatches(t *testing.T) {
+func TestTreeIndex_GetFirstIfdMatches(t *testing.T) {
 	ti := NewTreeIndex()
 
 	assetsPath := exifextracommon.GetTestAssetsPath()
@@ -99,5 +99,32 @@ func TestGetFirstIfdMatches(t *testing.T) {
 
 	if reflect.DeepEqual(actual, expected) != true {
 		t.Fatalf("Files list not correct: %v", actual)
+	}
+}
+
+func TestTreeIndex_Search(t *testing.T) {
+	ti := NewTreeIndex()
+
+	assetsPath := exifextracommon.GetTestAssetsPath()
+
+	err := ti.AddPath(assetsPath)
+	log.PanicIf(err)
+
+	hits := ti.Search("GIMP", nil)
+
+	if len(hits) != 1 {
+		t.Fatalf("Not exactly one result")
+	}
+
+	sr := hits[0]
+
+	if filepath.Base(sr.Filepath) != "image.webp" {
+		t.Fatalf("Search result file not correct: [%s]", filepath.Base(sr.Filepath))
+	} else if sr.IfdPath != "IFD" {
+		t.Fatalf("Search result IFD not correct: [%s]", sr.IfdPath)
+	} else if sr.TagName != "Software" {
+		t.Fatalf("Search result tag not correct: [%s]", sr.TagName)
+	} else if sr.ValuePhrase != "GIMP 2.10.24" {
+		t.Fatalf("Search result value not correct: [%s]", sr.ValuePhrase)
 	}
 }
