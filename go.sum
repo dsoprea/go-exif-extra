@@ -24,6 +24,8 @@ github.com/chzyer/test v0.0.0-20180213035817-a1ea475d72b1/go.mod h1:Q3SI9o4m/ZMn
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/dsoprea/go-exif/v2 v2.0.0-20200321225314-640175a69fe4/go.mod h1:Lm2lMM2zx8p4a34ZemkaUV95AnMl4ZvLbCUbwOvLC2E=
+github.com/dsoprea/go-exif/v2 v2.0.0-20200604193436-ca8584a0e1c4 h1:Mg7pY7kxDQD2Bkvr1N+XW4BESSIQ7tTTR7Vv+Gi2CsM=
+github.com/dsoprea/go-exif/v2 v2.0.0-20200604193436-ca8584a0e1c4/go.mod h1:9EXlPeHfblFFnwu5UOqmP2eoZfJyAZ2Ri/Vki33ajO0=
 github.com/dsoprea/go-exif/v3 v3.0.0-20200717053412-08f1b6708903/go.mod h1:0nsO1ce0mh5czxGeLo4+OCZ/C6Eo6ZlMWsz7rH/Gxv8=
 github.com/dsoprea/go-exif/v3 v3.0.0-20200717071058-9393e7afd446/go.mod h1:cg5SNYKHMmzxsr9X6ZeLh/nfBRHHp5PngtEPcujONtk=
 github.com/dsoprea/go-exif/v3 v3.0.0-20210428042052-dca55bf8ca15/go.mod h1:cg5SNYKHMmzxsr9X6ZeLh/nfBRHHp5PngtEPcujONtk=
@@ -41,6 +43,8 @@ github.com/dsoprea/go-logging v0.0.0-20200710184922-b02d349568dd h1:l+vLbuxptsC6
 github.com/dsoprea/go-logging v0.0.0-20200710184922-b02d349568dd/go.mod h1:7I+3Pe2o/YSU88W0hWlm9S22W7XI1JFNJ86U0zPKMf8=
 github.com/dsoprea/go-photoshop-info-format v0.0.0-20200609050348-3db9b63b202c h1:7j5aWACOzROpr+dvMtu8GnI97g9ShLWD72XIELMgn+c=
 github.com/dsoprea/go-photoshop-info-format v0.0.0-20200609050348-3db9b63b202c/go.mod h1:pqKB+ijp27cEcrHxhXVgUUMlSDRuGJJp1E+20Lj5H0E=
+github.com/dsoprea/go-png-image-structure v0.0.0-20210512210324-29b889a6093d h1:8+qI8ant/vZkNSsbwSjIR6XJfWcDVTg/qx/3pRUUZNA=
+github.com/dsoprea/go-png-image-structure v0.0.0-20210512210324-29b889a6093d/go.mod h1:yTR3tKgyk20phAFg6IE9ulMA5NjEDD2wyx+okRFLVtw=
 github.com/dsoprea/go-png-image-structure/v2 v2.0.0-20210512044023-23bdd883ee8e h1:7xT+Xgi019P9KVdcl+QUnSrgKCwIZWqkPNk5GygFTsw=
 github.com/dsoprea/go-png-image-structure/v2 v2.0.0-20210512044023-23bdd883ee8e/go.mod h1:scnx0wQSM7UiCMK66dSdiPZvL2hl6iF5DvpZ7uT59MY=
 github.com/dsoprea/go-tiff-image-structure/v2 v2.0.0-20210512044046-dc78da6a809b h1:r5TpplS/qPIevKTw6B9ft3p00FP6Flp3lXizranDiVQ=
