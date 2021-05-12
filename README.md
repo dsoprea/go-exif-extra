@@ -7,3 +7,12 @@
 
 This repository provides EXIF and image support that transcends any one format
 but does not provide any actual executable tooling.
+
+
+# Tree Index
+
+Filesystem paths or trees can be loaded in an index. Files that have a given tag
+are grouped together. Values of all tags or specific tags can also be searched
+case-insensitively.
+
+See the Go Reference link for usage examples.

@@ -1,6 +1,7 @@
 package exifextra
 
 import (
+	"fmt"
 	"reflect"
 	"sort"
 	"testing"
@@ -102,6 +103,30 @@ func TestTreeIndex_GetFirstIfdMatches(t *testing.T) {
 	}
 }
 
+func ExampleTreeIndex_GetFirstIfdMatches() {
+	ti := NewTreeIndex()
+
+	assetsPath := exifextracommon.GetTestAssetsPath()
+
+	err := ti.AddPath(assetsPath)
+	log.PanicIf(err)
+
+	values := ti.GetFirstIfdMatches("Software")
+
+	byFilename := make(map[string]string)
+	for _, value := range values {
+		byFilename[filepath.Base(value.Filepath)] = value.ValuePhrase
+	}
+
+	for _, filename := range []string{"image.tiff", "image.webp"} {
+		fmt.Printf("%s: %s\n", filename, byFilename[filename])
+	}
+
+	// Output:
+	// image.tiff: Mac OS X 10.5.8 (9L31a)
+	// image.webp: GIMP 2.10.24
+}
+
 func TestTreeIndex_Search(t *testing.T) {
 	ti := NewTreeIndex()
 
@@ -127,4 +152,29 @@ func TestTreeIndex_Search(t *testing.T) {
 	} else if sr.ValuePhrase != "GIMP 2.10.24" {
 		t.Fatalf("Search result value not correct: [%s]", sr.ValuePhrase)
 	}
+}
+
+func ExampleTreeIndex_Search() {
+	ti := NewTreeIndex()
+
+	assetsPath := exifextracommon.GetTestAssetsPath()
+
+	err := ti.AddPath(assetsPath)
+	log.PanicIf(err)
+
+	hits := ti.Search("GIMP", nil)
+
+	sr := hits[0]
+
+	fmt.Printf("File: %s\n", filepath.Base(sr.Filepath))
+	fmt.Printf("IfdPath: %s\n", sr.IfdPath)
+	fmt.Printf("TagName: %s\n", sr.TagName)
+	fmt.Printf("Value: %s\n", sr.ValuePhrase)
+
+	// Output:
+	//
+	// File: image.webp
+	// IfdPath: IFD
+	// TagName: Software
+	// Value: GIMP 2.10.24
 }
