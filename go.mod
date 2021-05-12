@@ -10,6 +10,7 @@ go 1.16
 // replace github.com/dsoprea/go-webp-image-structure => ../go-webp-image-structure
 
 require (
+	github.com/dsoprea/go-exif/v3 v3.0.0-20210512055020-8213cfabc61b
 	github.com/dsoprea/go-heic-exif-extractor/v2 v2.0.0-20210512044107-62067e44c235
 	github.com/dsoprea/go-jpeg-image-structure/v2 v2.0.0-20210512043942-b434301c6836
 	github.com/dsoprea/go-logging v0.0.0-20200710184922-b02d349568dd
