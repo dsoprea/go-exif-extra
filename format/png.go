@@ -5,6 +5,7 @@ import (
 )
 
 const (
+	// PngMediaType is the name of the registered PNG parser.
 	PngMediaType = "png"
 )
 

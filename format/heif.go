@@ -5,6 +5,7 @@ import (
 )
 
 const (
+	// HeifMediaType is the name of the registered HEIF parser.
 	HeifMediaType = "heif"
 )
 

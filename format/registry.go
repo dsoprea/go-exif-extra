@@ -43,6 +43,7 @@ func register(name string, mp riimage.MediaParser, extensions []string) {
 	}
 }
 
+// Formats returns all registered media-parsers.
 func Formats() (formats []riimage.MediaParser) {
 	defer func() {
 		if errRaw := recover(); errRaw != nil {

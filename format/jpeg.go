@@ -5,6 +5,7 @@ import (
 )
 
 const (
+	// JpegMediaType is the name of the registered JPEG parser.
 	JpegMediaType = "jpeg"
 )
 

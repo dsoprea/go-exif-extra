@@ -5,6 +5,7 @@ import (
 )
 
 const (
+	// TiffMediaType is the name of the registered TIFF parser.
 	TiffMediaType = "tiff"
 )
 

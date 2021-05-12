@@ -13,6 +13,7 @@ var (
 	testExifData []byte = nil
 )
 
+// GetModuleRootPath returns the root path of the module. Supports testing.
 func GetModuleRootPath() string {
 	if moduleRootPath == "" {
 		moduleRootPath = os.Getenv("EXIFEXTRA_MODULE_ROOT_PATH")
@@ -51,6 +52,7 @@ func GetModuleRootPath() string {
 	return moduleRootPath
 }
 
+// GetTestAssetsPath returns the path of the assets directory.
 func GetTestAssetsPath() string {
 	moduleRootPath := GetModuleRootPath()
 	assetsPath := path.Join(moduleRootPath, "assets")

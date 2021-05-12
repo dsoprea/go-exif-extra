@@ -5,6 +5,7 @@ import (
 )
 
 const (
+	// WebpMediaType is the name of the registered WEBP parser.
 	WebpMediaType = "webp"
 )
 
