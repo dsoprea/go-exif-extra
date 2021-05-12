@@ -1,4 +1,4 @@
-package exifextra
+package exifextracommon
 
 import (
 	"os"

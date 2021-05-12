@@ -6,7 +6,7 @@ import (
 
 	"io/ioutil"
 
-	"github.com/dsoprea/go-exif-extra"
+	"github.com/dsoprea/go-exif-extra/common"
 	"github.com/dsoprea/go-logging/v2"
 )
 
@@ -17,7 +17,7 @@ func getTestHeifBytes() (data []byte, err error) {
 		}
 	}()
 
-	assetsPath := exifextra.GetTestAssetsPath()
+	assetsPath := exifextracommon.GetTestAssetsPath()
 	filepath := path.Join(assetsPath, "image.heic")
 
 	data, err = ioutil.ReadFile(filepath)
