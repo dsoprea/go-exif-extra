@@ -104,7 +104,7 @@ func (ti *TreeIndex) AddedFiles() (files []string) {
 	files = make([]string, len(ti.addedFiles))
 
 	i := 0
-	for filepath, _ := range ti.addedFiles {
+	for filepath := range ti.addedFiles {
 		files[i] = filepath
 		i++
 	}
