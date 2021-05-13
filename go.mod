@@ -19,4 +19,7 @@ require (
 	github.com/dsoprea/go-tiff-image-structure/v2 v2.0.0-20210512044046-dc78da6a809b
 	github.com/dsoprea/go-utility/v2 v2.0.0-20200717064901-2fccff4aa15e
 	github.com/dsoprea/go-webp-image-structure v0.0.0-20210512044215-f98af2b0401e
+	github.com/eiannone/keyboard v0.0.0-20200508000154-caf4b762e807
+	github.com/jessevdk/go-flags v1.4.0
+	github.com/wayneashleyberry/terminal-dimensions v1.0.0
 )
