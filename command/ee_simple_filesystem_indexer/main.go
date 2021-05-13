@@ -24,6 +24,25 @@ var (
 	arguments = new(parameters)
 )
 
+func printGroupedFiles(valuePhrase string, files []string) (err error) {
+	defer func() {
+		if errRaw := recover(); errRaw != nil {
+			err = errRaw.(error)
+		}
+	}()
+
+	fmt.Printf("(%d) files with value [%s]:\n", len(files), valuePhrase)
+	fmt.Printf("\n")
+
+	for _, filepath := range files {
+		fmt.Println(filepath)
+	}
+
+	fmt.Printf("\n")
+
+	return nil
+}
+
 func printValues(it exifextra.IndexedTag, ti *exifextra.TreeIndex) (err error) {
 	defer func() {
 		if errRaw := recover(); errRaw != nil {
@@ -37,18 +56,29 @@ func printValues(it exifextra.IndexedTag, ti *exifextra.TreeIndex) (err error) {
 	index := ti.Index()
 	values := index[it]
 
-	files := make([]string, len(values))
-	valuesByFilepath := make(map[string]string)
+	groupedFiles := make(map[string][]string)
 
-	for i, value := range values {
-		files[i] = value.Filepath
-		valuesByFilepath[value.Filepath] = value.ValuePhrase
+	for _, value := range values {
+		if files, found := groupedFiles[value.ValuePhrase]; found == true {
+			groupedFiles[value.ValuePhrase] = append(files, value.Filepath)
+		} else {
+			groupedFiles[value.ValuePhrase] = []string{value.Filepath}
+		}
 	}
 
-	sort.Strings(files)
+	i := 0
+	valuePhrases := make([]string, len(groupedFiles))
+	for valuePhrase := range groupedFiles {
+		valuePhrases[i] = valuePhrase
+		i++
+	}
 
-	for _, filepath := range files {
-		fmt.Printf("%s: [%s]\n", filepath, valuesByFilepath[filepath])
+	sort.Strings(valuePhrases)
+
+	for _, value := range valuePhrases {
+		printGroupedFiles(value, groupedFiles[value])
+
+		fmt.Printf("\n")
 	}
 
 	fmt.Printf("\n")
