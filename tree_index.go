@@ -172,11 +172,14 @@ func (ti *TreeIndex) AddPath(rootPath string) (err error) {
 		imageFilepath := path.Join(rootPath, filename)
 
 		mc, err := mp.ParseFile(imageFilepath)
-		log.PanicIf(err)
+		if err != nil {
+            treeIndexLogger.Warningf(nil, "Could not parse [%s]: %s", imageFilepath, err.Error())
+            continue
+        }
 
 		_, exifData, err := mc.Exif()
 		if err != nil {
-			treeIndexLogger.Warningf(nil, "Could not parse [%s]: %s", imageFilepath, err.Error())
+			treeIndexLogger.Warningf(nil, "Could not extract EXIF from [%s]: %s", imageFilepath, err.Error())
 			continue
 		}
 
@@ -217,6 +220,10 @@ func (ti *TreeIndex) AddPath(rootPath string) (err error) {
 			}
 
 			thisAddedCount++
+
+            if thisAddedCount % 100 == 0 {
+                treeIndexLogger.Debugf(nil, "(%d) files loaded.", thisAddedCount)
+            }
 		}
 
 		ti.addedCount += thisAddedCount
