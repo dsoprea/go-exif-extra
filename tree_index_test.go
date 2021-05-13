@@ -135,7 +135,8 @@ func TestTreeIndex_Search(t *testing.T) {
 	err := ti.AddPath(assetsPath)
 	log.PanicIf(err)
 
-	hits := ti.Search("GIMP", nil)
+	hits, err := ti.Search("GIMP", nil)
+	log.PanicIf(err)
 
 	if len(hits) != 1 {
 		t.Fatalf("Not exactly one result")
@@ -162,7 +163,8 @@ func ExampleTreeIndex_Search() {
 	err := ti.AddPath(assetsPath)
 	log.PanicIf(err)
 
-	hits := ti.Search("GIMP", nil)
+	hits, err := ti.Search("GIMP", nil)
+	log.PanicIf(err)
 
 	sr := hits[0]
 
