@@ -21,5 +21,6 @@ require (
 	github.com/dsoprea/go-webp-image-structure v0.0.0-20210512044215-f98af2b0401e
 	github.com/eiannone/keyboard v0.0.0-20200508000154-caf4b762e807
 	github.com/jessevdk/go-flags v1.4.0
+	github.com/ryanuber/columnize v2.1.2+incompatible // indirect
 	github.com/wayneashleyberry/terminal-dimensions v1.0.0
 )

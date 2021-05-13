@@ -244,7 +244,13 @@ func (sr SearchResult) String() string {
 // Search does a case-insensitive search through the values of the given tags
 // acros all indexed files. If no tags are given, all tags will be searched. The
 // tag-names are also case-insensitive.
-func (ti *TreeIndex) Search(query string, tagNames []string) (hits []SearchResult) {
+func (ti *TreeIndex) Search(query string, tagNames []string) (hits []SearchResult, err error) {
+	defer func() {
+		if errRaw := recover(); errRaw != nil {
+			err = log.Wrap(errRaw.(error))
+		}
+	}()
+
 	var filter sort.StringSlice
 
 	if tagNames != nil && len(tagNames) > 0 {
@@ -290,5 +296,5 @@ func (ti *TreeIndex) Search(query string, tagNames []string) (hits []SearchResul
 		}
 	}
 
-	return hits
+	return hits, nil
 }
